@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 500px;
+}
+ body {
+  background-image: url('https://i.pinimg.com/originals/0f/24/ad/0f24ad4e3f9519b368a13646031d1d94.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: 500px;
+}
+.main{
+            border-radius: 5px;
+            width: 50%;
+            height: 472px;
+            display: block;
+            margin-right: 100%;
+        }
+        .top{
+            width: 98,9%;
+            height: 30px;
+            padding-left: 15px;
+            padding-top: 5px;
+            padding-bottom: 40px;
+            margin-bottom: 20px;
+            color:white;
+            text-align: center;
+        }
+        ul{
+            list-style-type: none;
+        }
+        li{
+            margin-bottom: 16px;
+        }
+</style>
+</head>
+<body onload ="Showdatasaved()">
+
+<h2>Vertical Tabs</h2>
+<p>Click on the buttons inside the tabbed menu:</p>
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Nhập thông tin cần quản lý</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Danh sánh quản lý bán xe Vinfast</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Biểu đồ sản phẩm bán được</button>
+</div>
+
+<div id="London" class="tabcontent">
+   <div class="main">
+        <div class="container ">
+                    <div class="top">
+                        <h2>Nhập thông tin cần quản lý</h2>
+                    </div>
+                        <form>
+                            <ul >
+                                <li>
+                                    <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: white; width: 500px;">Tên Khách hàng</div>
+                                    <input type="text" style="width:100%;height: 22px;background-color:white;border: 1px solid black;" id="name">
+                                </li>
+                                <li>
+                                    <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: white;">Tên Xe</div>
+                                    <select type="text" style="width: 100%;height: 29px;border: 1px solid grey;" id="nsx" disabled>
+                                    </select>
+                                </li>
+                                <li>
+                                    <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: white;">Giá Bán/VND</div>
+                                    <input type="text" style="width:100%;height: 22px;border: 1px solid grey;" id="fm_price" onkeyup="tinhtoan()">
+                                </li>
+                                <li>
+                                    <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif;color: white;">Số Lượng</div>
+                                    <input type="text" style="width: 100%;height: 22px;border: 1px solid grey;" id="fm_quantity" onkeyup="tinhtoan()">
+                                </li>
+                                <li>
+                                    <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif;color: white;">Tổng Giá/VNĐ</div>
+                                    <input type="text" style="width:100%;height: 22px;border: 1px solid grey;background-color: rgb(241, 232, 232);" id="fm_sum" disabled>
+                                </li>
+                                <li>
+                                    <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif;color: white;">Loại Xe</div>
+                                    <select type="text" onchange="changeManufacturer()" style="width: 100%;height: 29px;border: 1px solid grey;" id="select1">
+                                        <option>...lựa chọn...</option>
+                                        <option value="Ô Tô">Ô Tô</option>
+                                        <option value="Xe máy điện">Xe máy điện</option>
+                                    </select>
+                                </li>
+                                <div style="display: flex;">
+                                    <button id="btn_register" onclick="addproduct()" style="color: white;padding: 5px;background-color: blue;margin-right: 20px;cursor: pointer; width: 100%;">Thêm</button>
+                                    <button onclick="resetall()" style="color: white;padding: 5px;background-color: red;cursor: pointer;margin-left: 40px; width: 100%;">Huỷ</button>
+                                   <!--<div id="showdata" onclick="Showdatasaved()" style="border: 1px solid rgb(244, 76, 71);border-radius: 3px;color: white;padding: 5px;background-color: rgb(244, 76, 71);cursor: pointer;margin-left: 438px;">Show data saved</div>!-->
+                                </div>
+                            </ul>
+                        </form>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <div class="container pt-5 ">
+        <table border="1" cellspacing='0' cellpadding="5" style="color: white; width: 100%;">
+            <h1 style="margin-left: 450px;color: white;">Danh Sách Quản Lý Bán Xe Vinfast</h1>
+            <thead style="color: white; color ; margin-left: 300px;" >
+                <tr id="headtable">
+                    <th>STT</th>
+                    <th>Tên Khách Hàng</th>
+                    <th>Tên Xe</th>
+                    <th>Giá Bán</th>
+                    <th>Số Lượng</th>
+                    <th>Loại Xe</th>
+                </tr>
+            </thead>
+            <tbody id="bodytable">
+            </tbody>
+        </table> 
+</div>
+
+<div id="Tokyo" class="tabcontent border">
+                
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+<script>
+        function changeManufacturer() {
+            var v=document.getElementById('select1').value;
+            switch(v){
+                case '--Lựa Chọn--':
+                    document.getElementById('nsx').value='';
+                    document.getElementById('nsx').disabled= true;
+                break;    
+                case 'Ô Tô':
+                    var manu1=document.getElementById('nsx');
+                        manu1.innerHTML=`
+                        <option>--Lựa Chọn--</option>
+                        <option>VF e34</option>
+                        <option>Pressident</option>
+                        <option>Lux SA2.0</option>
+                        <option>Lux A2.0</option>
+                        <option>Lux Fadil</option>
+                        `
+                        manu1.disabled = false
+                break;  
+                case 'Xe máy điện':
+                    var manu2=document.getElementById('nsx');
+                        manu2.innerHTML=`
+                        <option>--Lựa Chọn--</option>
+                        <option>Theon</option>
+                        <option>Kalara S</option>
+                        <option>Feliz</option>
+                        <option>Impes</option>
+                        <option>Ludo</option>
+                        `
+                        manu2.disabled = false
+                break;  
+            }
+        }
+        function tinhtoan() {
+            var x=document.getElementById('fm_price').value
+            var y=document.getElementById('fm_quantity').value
+            if(isNaN(x)||isNaN(y)){
+                alert('Price or Quantity must be a number!!')
+                return
+            }
+            if(x!='' && y!=''){
+                document.getElementById('fm_sum').value=x*y
+            }
+            if(x=='' || y==''){
+                document.getElementById('fm_sum').value=''
+            }
+        }
+        var bigList=[];
+        var count=0;
+        var check2=0
+        function addproduct() {
+            var getname=document.getElementById('name').value;
+            var getcategoryname=document.getElementById('nsx').value;
+            var getprice=document.getElementById('fm_price').value;
+            var getquantity=document.getElementById('fm_quantity').value;
+            var getmanu=document.getElementById('select1').value;
+            if(getname==''|| getcategoryname==''|| getprice==''|| getquantity==''|| getmanu==''){
+                alert('Please fill all forms!!');
+                return
+            }
+            if(isNaN(getprice)||isNaN(getquantity)){
+                alert('Price or Quantity must be a number!!')
+                return
+            }
+            if(getcategoryname=='--Select--'){
+                alert('Please choose your category name!!')
+                return
+            }
+            if(count==0){
+                var node = document.createElement("TH");                                                     
+                document.getElementById("headtable").appendChild(node);
+                var node1 = document.createElement("TH");                                                     
+                document.getElementById("headtable").appendChild(node1);
+                count++;
+            }
+            var smallList={
+                listname: getname,
+                listcategoryname: getcategoryname,
+                listprice: getprice,
+                listquantity: getquantity,
+                listmanu: getmanu
+            }
+            if(position==-1){
+                add(smallList)
+            }
+            else{
+                bigList[position]=smallList;
+                position=-1;
+                document.getElementById('btn_register').innerHTML='Thêm'
+                display()
+                //Showdatasaved()
+            }
+            check2++
+        }
+        function display() {
+            var m=document.getElementById('bodytable')
+            m.innerHTML=''
+            for(i=0;i<bigList.length;i++){
+                var smallList=bigList[i]
+                console.log(smallList)
+                m.innerHTML+=`
+                <tr>
+                    <td>${i+1}</td>
+                    <td>${smallList.listname}</td>
+                    <td>${smallList.listcategoryname}</td>
+                    <td>${smallList.listprice}</td>
+                    <td>${smallList.listquantity}</td>
+                    <td>${smallList.listmanu}</td>
+                    <td><div onclick="Edit(${i})" style="border-radius: 3px;border: 1px solid rgb(235, 174, 84);background-color: rgb(235, 174, 84);color: white;padding: 5px;cursor: pointer;">Chỉnh sửa</div></td>
+                    <td><div onclick="Delete(${i})" style="border-radius: 3px;border: 1px solid rgb(224, 85, 85);background-color:  rgb(224, 85, 85);color: white;padding: 5px;cursor: pointer;">Xoá</div></td>
+                </tr>
+                `
+                localStorage.setItem('soluong',i+1)
+                localStorage.setItem('ten'+i,smallList.listname)
+                localStorage.setItem('tensanpham'+i,smallList.listcategoryname)
+                localStorage.setItem('giasanpham'+i,smallList.listprice)
+                localStorage.setItem('soluongsanpham'+i,smallList.listquantity)
+                localStorage.setItem('hangsanpham'+i,smallList.listmanu)
+            }
+        }
+        var countcheck=0   
+        var countcheck1=0      
+        function add(smallList) {
+            bigList.push(smallList)
+            var m=document.getElementById('bodytable')
+                m.innerHTML+=`
+                <tr>
+                    <td>${bigList.length}</td>
+                    <td>${smallList.listname}</td>
+                    <td>${smallList.listcategoryname}</td>
+                    <td>${smallList.listprice}</td>
+                    <td>${smallList.listquantity}</td>
+                    <td>${smallList.listmanu}</td>
+                    <td><div onclick="Edit(${bigList.length -1})" style="border-radius: 3px;border: 1px solid rgb(235, 174, 84);background-color: rgb(235, 174, 84);color: white;padding: 5px;cursor: pointer;">Chỉnh sửa</div></td>
+                    <td><div onclick="Delete(${bigList.length -1})" style="border-radius: 3px;border: 1px solid rgb(224, 85, 85);background-color:  rgb(224, 85, 85);color: white;padding: 5px;cursor: pointer;">Xoá</div></td>
+                </tr>
+                `
+                if(localStorage.getItem('soluong')<1){
+                    localStorage.setItem('soluong',bigList.length)
+                    localStorage.setItem('ten'+(bigList.length-1),smallList.listname)
+                    localStorage.setItem('tensanpham'+(bigList.length-1),smallList.listcategoryname)
+                    localStorage.setItem('giasanpham'+(bigList.length-1),smallList.listprice)
+                    localStorage.setItem('soluongsanpham'+(bigList.length-1),smallList.listquantity)
+                    localStorage.setItem('hangsanpham'+(bigList.length-1),smallList.listmanu)
+                    countcheck++
+                   countcheck1++
+                    return
+                }   
+                if(localStorage.getItem('soluong')!=0){
+                    if(countcheck1!=0){
+                        var dem=parseInt(localStorage.getItem('soluong'))
+                        localStorage.setItem('soluong',dem+countcheck)
+                        localStorage.setItem('ten'+(dem+countcheck-1),smallList.listname)
+                        localStorage.setItem('tensanpham'+(dem+countcheck-1),smallList.listcategoryname)
+                        localStorage.setItem('giasanpham'+(dem+countcheck-1),smallList.listprice)
+                        localStorage.setItem('soluongsanpham'+(dem+countcheck-1),smallList.listquantity)
+                        localStorage.setItem('hangsanpham'+(dem+countcheck-1),smallList.listmanu)
+                    }else{
+                        var dem=parseInt(localStorage.getItem('soluong'))
+                        localStorage.setItem('soluong',dem+1)
+                        localStorage.setItem('ten'+(dem),smallList.listname)
+                        localStorage.setItem('tensanpham'+(dem),smallList.listcategoryname)
+                        localStorage.setItem('giasanpham'+(dem),smallList.listprice)
+                        localStorage.setItem('soluongsanpham'+(dem),smallList.listquantity)
+                        localStorage.setItem('hangsanpham'+(dem),smallList.listmanu)
+                    }
+                    return
+                }
+        }
+
+        function resetall() {
+            document.getElementsByTagName('form')[0].reset()
+            document.getElementById('nsx').value='';
+            document.getElementById('nsx').disabled=true;
+        }
+        var position=-1;
+        function Edit(index) {
+            position=index;
+            var smallList= bigList[index];
+            console.log(smallList)
+            document.getElementById('name').value=smallList.listname;
+            document.getElementById('fm_price').value=smallList.listprice;
+            document.getElementById('fm_quantity').value=smallList.listquantity;
+            document.getElementById('select1').value=smallList.listmanu;
+            changeManufacturer()
+            document.getElementById('nsx').value=smallList.listcategoryname;
+            document.getElementById('btn_register').innerHTML='Cập nhật'
+        }
+        function Delete(index) {
+            var m=document.getElementById('bodytable')
+            m.innerHTML=''
+            bigList.splice(index,1)
+            for(i=0;i<bigList.length;i++){
+                localStorage.removeItem('ten'+i)
+                localStorage.removeItem('tensanpham'+i)
+                localStorage.removeItem('giasanpham'+i)
+                localStorage.removeItem('soluongsanpham'+i)
+                localStorage.removeItem('hangsanpham'+i)
+            }
+           
+            for(i=0;i<bigList.length;i++){
+                var smallList=bigList[i]
+                localStorage.setItem('soluong',bigList.length)
+                localStorage.setItem('ten'+i,smallList.listname)
+                localStorage.setItem('tensanpham'+i,smallList.listcategoryname)
+                localStorage.setItem('giasanpham'+i,smallList.listprice)
+                localStorage.setItem('soluongsanpham'+i,smallList.listquantity)
+                localStorage.setItem('hangsanpham'+i,smallList.listmanu)
+                m.innerHTML+=`
+                <tr>
+                    <td>${i+1}</td>
+                    <td>${smallList.listname}</td>
+                    <td>${smallList.listcategoryname}</td>
+                    <td>${smallList.listprice}</td>
+                    <td>${smallList.listquantity}</td>
+                    <td>${smallList.listmanu}</td>
+                    <td><div onclick="Edit(${i})" style="border-radius: 3px;border: 1px solid rgb(235, 174, 84);background-color: rgb(235, 174, 84);color: white;padding: 5px;cursor: pointer;">Chỉnh sửa</div></td>
+                    <td><div onclick="Delete(${i})" style="border-radius: 3px;border: 1px solid rgb(224, 85, 85);background-color:  rgb(224, 85, 85);color: white;padding: 5px;cursor: pointer;">Xoá</div></td>
+                </tr>
+                `
+                countcheck--
+            }
+           
+            if(bigList.length==0){
+                var list = document.getElementById("headtable");
+                list.removeChild(list.childNodes[6]);
+                list.removeChild(list.childNodes[6]);
+                count=0
+            }
+        }
+        var check1=0
+        function Showdatasaved() {
+            if(localStorage.getItem('soluong')<1){
+                alert('No data saved!!')
+                return
+            }
+            if(count==0){
+                var node = document.createElement("TH");                                                     
+                document.getElementById("headtable").appendChild(node);
+                var node1 = document.createElement("TH");                                                     
+                document.getElementById("headtable").appendChild(node1);
+                count++;
+            }
+            if(check1==0){
+                if(bigList.length==0){
+                    for(i=0;i<localStorage.getItem('soluong');i++){
+                        var smallList={
+                            listname: localStorage.getItem('ten'+i),
+                            listcategoryname: localStorage.getItem('tensanpham'+i),
+                            listprice: localStorage.getItem('giasanpham'+i),
+                            listquantity: localStorage.getItem('soluongsanpham'+i),
+                            listmanu: localStorage.getItem('hangsanpham'+i)
+                        }
+                        bigList.push(smallList)
+                    }
+                    for(i=0;i<bigList.length;i++){
+                        var m=document.getElementById('bodytable')
+                        m.innerHTML+=`
+                        <tr>
+                            <td>${i+1}</td>
+                            <td>${bigList[i].listname}</td>
+                            <td>${bigList[i].listcategoryname}</td>
+                            <td>${bigList[i].listprice}</td>
+                            <td>${bigList[i].listquantity}</td>
+                            <td>${bigList[i].listmanu}</td>
+                            <td><div onclick="Edit(${i})" style="border-radius: 3px;border: 1px solid rgb(235, 174, 84);background-color: rgb(235, 174, 84);color: white;padding: 5px;cursor: pointer;">Chỉnh sửa</div></td>
+                            <td><div onclick="Delete(${i})" style="border-radius: 3px;border: 1px solid rgb(224, 85, 85);background-color:  rgb(224, 85, 85);color: white;padding: 5px;cursor: pointer;">Xoá</div></td>
+                        </tr>
+                        `
+                    }
+                }
+                else{
+                    var x=localStorage.getItem('soluong')-bigList.length
+                    for(i=0;i<x;i++){
+                        var smallList={
+                            listname: localStorage.getItem('ten'+i),
+                            listcategoryname: localStorage.getItem('tensanpham'+i),
+                            listprice: localStorage.getItem('giasanpham'+i),
+                            listquantity: localStorage.getItem('soluongsanpham'+i),
+                            listmanu: localStorage.getItem('hangsanpham'+i)
+                        }
+                        bigList.push(smallList)
+                    }
+                    for(i=x-1;i<bigList.length;i++){
+                        var m=document.getElementById('bodytable')
+                        m.innerHTML+=`
+                        <tr>
+                            <td>${i+1}</td>
+                            <td>${bigList[i].listname}</td>
+                            <td>${bigList[i].listcategoryname}</td>
+                            <td>${bigList[i].listprice}</td>
+                            <td>${bigList[i].listquantity}</td>
+                            <td>${bigList[i].listmanu}</td>
+                            <td><div onclick="Edit(${i})" style="border-radius: 3px;border: 1px solid rgb(235, 174, 84);background-color: rgb(235, 174, 84);color: white;padding: 5px;cursor: pointer;">Edit</div></td>
+                            <td><div onclick="Delete(${i})" style="border-radius: 3px;border: 1px solid rgb(224, 85, 85);background-color:  rgb(224, 85, 85);color: white;padding: 5px;cursor: pointer;">Delete</div></td>
+                        </tr>
+                        `
+                       
+                    }
+                    for(i=0;i<bigList.length;i++){
+                        localStorage.setItem('soluong',bigList.length)
+                        localStorage.setItem('ten'+i,bigList[i].listname)
+                        localStorage.setItem('tensanpham'+i,bigList[i].listcategoryname)
+                        localStorage.setItem('giasanpham'+i,bigList[i].listprice)
+                        localStorage.setItem('soluongsanpham'+i,bigList[i].listquantity)
+                        localStorage.setItem('hangsanpham'+i,bigList[i].listmanu)
+                    }
+                }
+                
+            }else{
+                alert('Already show all data saved!!')
+                return
+            }
+        }
+        document.getElementById("tt1").innerHTML= bien1;
+        document.getElementById("tt2").innerHTML= bien2;
+        document.getElementById("tt3").innerHTML= bien3;
+        document.getElementById("tt4").innerHTML= bien4;
+    </script>
+    <script type="text/javascript">
+        function validate3(){
+            var u = document.getElementById("username").value;
+            var ph = document.getElementById("phone").value;
+            var mail= document.getElementById("mail").value;
+            var p1 = document.getElementById("passwordcu").value;
+            var p2 = document.getElementById("password-new").value;
+            if(u==""){
+                alert("vui lòng nhập tên!");
+                return false;      
+            } 
+            if((p1=="")||(p1.length<8)){
+                alert("vui lòng nhập mật khẩu!");
+                return false;
+            }
+            if (p2==""){
+                alert("vui lòng nhập mật khẩu mới!");
+                var passold=localStorage.getItem('pass_db')
+            }
+                if(p1!=""){
+                    localStorage.setItem('name_db',u)
+                    localStorage.setItem('phone_db',ph)
+                    localStorage.setItem('mail_db',mail)
+                    localStorage.setItem('passnew_db',p2)
+                }
+            else alert("mời các bạn nhập đầy đủ thông tin!")
+            return true;    
+        }
+    </script>
+   
+</body>
+</html> 

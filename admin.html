@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <title>Quản lí sản phẩm</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/admin.js"></script>
+    <script src="https://kit.fontawesome.com/9872ede934.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/dangky.js"></script>  
+    <link rel="stylesheet" type="text/css" href="css/admin.css">    
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $("#button1").click(function(){
+            $("#a1").fadeToggle();
+            $("#a2").fadeToggle();
+            $("#a3").fadeToggle();
+        });   
+        });
+    </script>
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("navbar").style.top = "0";
+          } else {
+            document.getElementById("navbar").style.top = "-50px";
+          }
+        }
+        function myFunction1() {
+           var element = document.body;
+           element.classList.toggle("dark-mode");
+        }
+        </script>
+         
+</head>
+<body onload ="Showdatasaved()">
+    <div class="container-fluid">
+      
+    </div>
+    <div class="container-fluid" style="padding-top:20px;">
+        <div class="row">
+            <div class="col-sm-3 mt-5">
+                <div class="card">
+                  <img src="https://img.thuthuatphanmem.vn/uploads/2018/09/22/avatar-trang-den-dep_015640236.png" alt="Avatar" width="100%">
+                  <div class="container">
+                    <button class="btn btn-danger" id="button1" onclick="xemtt()" style="width: 100%;">Xem thông tin tài khoản</button>
+                    <div class="border text-center" style="background: white;">
+                    <div id="a1" style="color:black;margin-top: 10px;"></div>
+                    <div id="a2" style="color:black;margin-top: 10px"></div>
+                    <div id="a3" style="color:black;margin-top: 10px; margin-bottom: 10px;"></div>
+                </div>
+            </div>
+                <div id="mySidepanel" class="sidepanel" style="color: white;">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <a><h4 >Xe Ô Tô</h4></a>
+                    <a >Vinfast VF e34 giá bán: 590.000.000 VNĐ</a> 
+                    <a >Vinfast Pressident giá bán: 4.600.000.000 VNĐ</a>
+                    <a >Vinfast Lux SA2.0 giá bán: 1.835.693.000 VNĐ </a>
+                    <a >Vinfast Lux A2.0 giá bán: 1.358.554.000 VNĐ</a>
+                    <a >Vinfast Fadil giá bán: 499.000.000 VNĐ</a>
+                    <a ><h4>Xe Máy Điện</h4></a>
+                    <a >Vinfast Theon giá bán: 63.900.000 VNĐ</a> 
+                    <a >Vinfast Kalara S giá bán: 39.900.000 VNĐ</a>
+                    <a >Vinfast Feliz giá bán: 24.900.000 VNĐ</a>
+                    <a >Vinfast Impes giá bán: 14.900.000 VNĐ</a>
+                    <a >Vinfast Ludo giá bán: 12.900.000 VNĐ</a>
+                </div>
+
+                <button class="openbtn mt-1" onclick="openNav()">☰ Menu giá xe</button>
+            </div>
+        </div>
+            <div class="col-sm-6 mt-5 border mb-3" style="background:rgba(0,0,0,0.5);">
+                <div class="top mt-3 " style="background-color: skyblue; color:black;">
+                    <h4>Nhập thông tin cần quản lý</h4>
+                </div>      
+                <form>
+                    <ul >
+                        <li>
+                            <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: white;">Tên Khách hàng</div>
+                            <input type="text" style="width:100%;height: 30px;background-color:white;border: 1px solid black;" id="name">
+                        </li>
+                        <li>
+                            <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: white;">Tên Xe</div>
+                            <select type="text" style="width: 100%;height: 30px;border: 1px solid grey;" id="nsx" disabled></select>
+                        </li>
+                         <li>
+                            <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: white;">Giá Bán/VNĐ</div>
+                            <input type="text" style="width:100%;height: 30px;border: 1px solid grey;" id="fm_price" onkeyup="tinhtoan()">
+                        </li>
+                        <li>
+                            <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif;color: white;">Số Lượng</div>
+                            <input type="text" style="width: 100%;height: 30px;border: 1px solid grey;" id="fm_quantity" onkeyup="tinhtoan()">
+                        </li>
+                        <li>
+                            <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif;color: white;">Tổng Giá/VNĐ</div>
+                            <input type="text" style="width: 100%;height: 30px;border: 1px solid grey;background-color: rgb(241, 232, 232);" id="fm_sum" disabled>
+                        </li>
+                        <li>
+                            <div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif;color: white;">Loại Xe</div>
+                            <select type="text" onchange="changeManufacturer()" style="width: 100%;height: 30px;border: 1px solid grey;" id="select1">
+                                <option>...lựa chọn...</option>
+                                <option value="Ô Tô">Ô Tô</option>
+                                <option value="Xe máy điện">Xe máy điện</option>
+                            </select>
+                        </li>
+                        <div style="display: flex;">
+                            <button id="btn_register" onclick="addproduct()" class="btn btn-warning" style="width: 100%;">Thêm</button>
+                            <button onclick="resetall()" class="btn btn-danger" style="width: 100%;">Huỷ</button>
+                        </div>
+                    </ul>
+                </form>
+            </div>
+            <div class="col-sm-3 mt-5">
+                <button class="btn btn-dark" style="width: 100%;" onclick="myFunction1()">Bật sáng/tối</button>
+                <canvas id="doughnut-chart" awidth="300" height="230" style="margin-top: 50px;"></canvas>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="container-fluidpb-5 " style="background:rgba(0,0,0,0.5);">
+        <div class="topnav">
+                  <a class="active" href="#home" style="width: 500px; height: 70px;padding-top: 25px;">DANH SÁCH QUẢN LÝ XE ĐÃ BÁN</a>
+                  <div class="search-container">
+                    <form action="/action_page.php" style="margin-right: 30px; ">
+                      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tên khách hàng để tìm kiếm thông tin..." title="Type in a name" style="width: 1250px;" >
+                    </form>
+                  </div>
+                </div>
+
+        <table id="myTable">
+                        <tr id="headtable">
+                            <th>STT</th>
+                            <th>Tên Khách Hàng</th>
+                            <th>Tên Xe</th>
+                            <th>Giá Bán</th>
+                            <th>Số Lượng</th>
+                            <th>Loại Xe</th>
+                        </tr>
+                    <tbody id="bodytable">
+                    </tbody>
+                </table>
+    </div>
+    <script>
+        function openNav() {
+          document.getElementById("mySidepanel").style.width = "400px";
+        }
+
+        function closeNav() {
+          document.getElementById("mySidepanel").style.width = "0";
+        }
+        new Chart(document.getElementById("doughnut-chart"), {
+                        type: 'doughnut',
+                        data: {
+                          labels: ["Vinfast VF e34", "Vinfast Pressident", "Vinfast Lux SA2.0", "Vinfast Lux A2.0", "Vinfast Fadil"],
+                          datasets: [
+                            {
+                              label: "Population (millions)",
+                              backgroundColor: ["#2306C6", "#C306C6","#09C606","#DCBB12","#C00D22"],
+                              data: [1,2,2,3,1]
+                            }
+                          ]
+                        },
+                        options: {
+                          title: {
+                            display: true,
+                            text: 'Biểu đồ Ô Tô Vinfast bán được năm 2021'
+                          }
+                        }
+                    });
+    </script>
+<footer>
+     <div class=" text-center" style="background: black;">
+        <br>
+        <a href="index.html"><img class="mb-3" src="https://storage.googleapis.com/vinfast-data-01/logo-fot.png"></a>
+    </div>
+</footer>
+</body>
+</html>
